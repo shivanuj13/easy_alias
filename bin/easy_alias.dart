@@ -173,7 +173,8 @@ void main(List<String> arguments) {
     while (true) {
       printMenuTitle('\n=== Easy Alias CLI ===');
       if (unsavedChanges) {
-        printWarning('(!) You have unsaved changes.');
+        printWarning('(!) You have unsaved changes, Changes will be lost if you exit without saving.');
+        printInfo('You can save and activate your changes by selecting "Save & Activate" from the menu.');
       }
       for (var i = 0; i < menuOptions.length; i++) {
         print('  ${yellow}${i + 1}.$reset ${menuOptions[i]}');
@@ -259,19 +260,19 @@ void main(List<String> arguments) {
           }
         }
         break;
-      case 'Delete Alias':
-        listAliases();
-        final shortcut = getInputOrCancel('Enter shortcut to delete:');
-        if (shortcut == null) break;
-        final index = inMemoryAliases.indexWhere((a) => a.shortcut == shortcut);
-        if (index == -1) {
-          printError('❌ Alias "$shortcut" not found.');
-        } else {
-          inMemoryAliases.removeAt(index);
-          unsavedChanges = true;
-          printSuccess('✅ Alias "$shortcut" deleted.');
+      case 'Delete Alias': {
+        final selected = selectManagedAliases('delete');
+        if (selected.isEmpty) {
+          printWarning('No aliases selected for deletion.');
+          break;
         }
+        for (final alias in selected) {
+          inMemoryAliases.removeWhere((a) => a.shortcut == alias.shortcut);
+          printSuccess('✅ Alias "${alias.shortcut}" deleted.');
+        }
+        unsavedChanges = true;
         break;
+      }
       case 'Activate Aliases': {
         final selected = selectManagedAliases('activate');
         if (selected.isEmpty) {
@@ -311,12 +312,12 @@ void main(List<String> arguments) {
         break;
       case 'Exit':
         if (unsavedChanges) {
-          final save = prompts.getBool('You have unsaved changes. Save & activate before exit?');
+          final save = prompts.getBool('unsaved changes. Save & activate before exit?');
           if (save) {
             saveAndActivate();
           }
         }
-        printInfo('👋 Goodbye!');
+        printInfo('👋 Exiting Easy Alias CLI. Have a productive day!');
         exit(0);
     }
   }

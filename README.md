@@ -76,6 +76,30 @@ Just run:
 ea
 ```
 
+### Example: Adding an Alias
+
+When you run `ea`, select `Add Alias` from the menu. You will be prompted:
+
+```
+=== Easy Alias CLI ===
+  1. Add Alias
+  2. List Aliases
+  3. Update Alias
+  4. Delete Alias
+  5. Activate Aliases
+  6. Deactivate Aliases
+  7. Save & Activate
+  8. Exit
+Select an option (number, or type "exit" to exit): 1
+Enter shortcut: gs
+Enter command: git status
+✅ Alias "gs" added.
+```
+
+You can now use the menu to activate, list, or manage your aliases.
+
+> **Note:** After adding, updating, or deleting aliases, you must select **Save & Activate** from the menu for your changes to take effect in your shell. Then, restart your terminal or re-source your shell config to use the updated aliases.
+
 ### Menu Options
 - Add Alias
 - List Aliases (shows status: ✅ active, ❌ inactive, 🔵 found in shell config)
