@@ -6,7 +6,7 @@ A simple Dart CLI tool to manage shell aliases on macOS and Linux. Create, list,
 
 ## 🚀 Quick Start
 
-### Option 1: Download Pre-built Executable (Recommended)
+### Option 1: Download Pre-built Executable (Recommended for Apple silicon chip)
 1. **Download the latest `ea` executable** from the [Releases](https://github.com/shivanuj13/easy_alias/releases) page for your platform.
 2. **Make it executable and move to your PATH:**
    ```sh
