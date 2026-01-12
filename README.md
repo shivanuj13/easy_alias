@@ -17,6 +17,32 @@ A simple Dart CLI tool to manage shell aliases on macOS and Linux. Create, list,
    ```sh
    ea
    ```
+### ⚠️ macOS Security Notice (Important)
+
+When you run `ea` for the first time, macOS may block it and show a message saying the app cannot be opened because it is from an unidentified developer.
+
+This happens because:
+- The executable is **not notarized by Apple** (Apple requires a paid developer account for notarization).
+- `ea` is a **command-line tool**, not an App Store app.
+- macOS Gatekeeper blocks new, unsigned binaries by default.
+
+👉 **This does NOT mean the tool is malware.**
+
+- `ea` is **fully open-source**
+- You can review the complete source code before running it
+- The binary is built directly from this source with no hidden behavior
+
+#### How to allow `ea` to run
+
+1. Open **System Settings**
+2. Go to **Privacy & Security**
+3. Scroll down to the **Security** section
+4. You’ll see a message about `ea` being blocked
+5. Click **Open Anyway**
+6. Confirm when prompted
+
+After this, `ea` will run normally and you won’t be asked again.
+
 
 ### Option 2: Build from Source (Requires Dart)
 1. **Clone the repository:**
